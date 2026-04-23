@@ -14,143 +14,465 @@
       --bg:#f7f3ef;
       --surface:#ffffff;
       --surface-soft:#fbf7f4;
+      --surface-tint:#f4ede8;
       --text:#3d352f;
       --muted:#746860;
       --accent:#b76e79;
+      --accent-dark:#9f5e68;
       --accent-soft:#ead8d3;
       --line:#e7ddd7;
       --shadow:0 10px 30px rgba(58,40,42,.08);
+      --shadow-soft:0 8px 22px rgba(58,40,42,.06);
       --radius:28px;
       --max:1160px;
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--text);
       background:var(--bg);
       line-height:1.6;
     }
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{width:min(var(--max), calc(100% - 32px));margin:0 auto}
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    .container{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+    }
+
     .topbar{
-      position:sticky;top:0;z-index:20;
+      position:sticky;
+      top:0;
+      z-index:20;
       backdrop-filter:saturate(180%) blur(14px);
       background:rgba(255,255,255,.86);
       border-bottom:1px solid rgba(231,221,215,.9);
     }
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
-    .brand-title{font-size:1.15rem;font-weight:700;letter-spacing:-.02em}
-    .brand-sub{font-size:.92rem;color:var(--muted)}
-    .menu{display:flex;gap:22px;font-size:.95rem}
-    .menu a:hover{color:var(--accent)}
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:16px 0;
+    }
+
+    .brand-title{
+      font-size:1.15rem;
+      font-weight:700;
+      letter-spacing:-.02em;
+    }
+
+    .brand-sub{
+      font-size:.92rem;
+      color:var(--muted);
+    }
+
+    .menu{
+      display:flex;
+      gap:22px;
+      font-size:.95rem;
+    }
+
+    .menu a{
+      transition:color .18s ease;
+    }
+
+    .menu a:hover{
+      color:var(--accent);
+    }
+
     .hero{
       padding:72px 0 56px;
-      display:grid;grid-template-columns:1.1fr .9fr;gap:42px;align-items:center;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:42px;
+      align-items:center;
     }
+
     .eyebrow{
-      color:var(--accent);text-transform:uppercase;letter-spacing:.22em;font-size:.76rem;font-weight:700;margin:0 0 10px;
+      color:var(--accent);
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      font-size:.76rem;
+      font-weight:700;
+      margin:0 0 10px;
     }
+
     h1{
-      font-size:clamp(2.4rem, 6vw, 4.7rem);line-height:1.04;letter-spacing:-.04em;
+      font-size:clamp(2.4rem, 6vw, 4.7rem);
+      line-height:1.04;
+      letter-spacing:-.04em;
       margin:0;
     }
-    .lead{font-size:1.12rem;color:var(--muted);max-width:42rem;margin:22px 0 0}
-    .actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:14px 22px;border-radius:18px;font-weight:700;
-      border:1px solid transparent;box-shadow:var(--shadow)
+
+    .lead{
+      font-size:1.12rem;
+      color:var(--muted);
+      max-width:42rem;
+      margin:22px 0 0;
     }
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-secondary{background:#fff;border-color:var(--line)}
-    .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px;max-width:520px}
-    .stat{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;text-align:center;box-shadow:var(--shadow)}
-    .stat strong{display:block;font-size:1.35rem}
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:18px;
+      font-weight:700;
+      border:1px solid transparent;
+      box-shadow:var(--shadow-soft);
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 12px 28px rgba(58,40,42,.12);
+    }
+
+    .btn-primary{
+      background:var(--accent);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      background:var(--accent-dark);
+    }
+
+    .btn-secondary{
+      background:#fff;
+      border-color:var(--line);
+    }
+
+    .btn-secondary:hover{
+      background:#fcfbfa;
+      border-color:#d9ccc5;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-top:28px;
+      max-width:520px;
+    }
+
+    .stat{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:18px;
+      text-align:center;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .stat strong{
+      display:block;
+      font-size:1.35rem;
+    }
+
     .hero-card{
       background:linear-gradient(145deg,var(--accent-soft),#f8efe9 50%,#fff);
-      border-radius:34px;padding:16px;box-shadow:var(--shadow)
+      border-radius:34px;
+      padding:16px;
+      box-shadow:var(--shadow);
     }
+
     .hero-visual{
-      min-height:520px;border-radius:28px;overflow:hidden;
+      min-height:520px;
+      border-radius:28px;
+      overflow:hidden;
       background:
         radial-gradient(circle at top left, rgba(255,255,255,.9), transparent 38%),
         linear-gradient(160deg, #d7b9bf, #f3e8e3 52%, #fff 100%);
-      display:flex;align-items:end;justify-content:start;padding:26px;
+      display:flex;
+      align-items:end;
+      justify-content:start;
+      padding:26px;
       position:relative;
     }
+
     .hero-badge{
       background:rgba(255,255,255,.88);
       border:1px solid rgba(255,255,255,.95);
-      border-radius:22px;padding:16px 18px;max-width:280px;
-      box-shadow:var(--shadow)
+      border-radius:22px;
+      padding:16px 18px;
+      max-width:280px;
+      box-shadow:var(--shadow);
     }
-    .section{padding:66px 0}
-    .section-title{max-width:760px;margin-bottom:28px}
-    .section-title h2{font-size:clamp(2rem,4vw,3.3rem);line-height:1.08;margin:8px 0 0;letter-spacing:-.03em}
-    .section-title p{color:var(--muted);margin:14px 0 0}
-    .grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+
+    .section{
+      padding:72px 0;
+    }
+
+    .section.alt{
+      background:#fff;
+    }
+
+    .section.soft{
+      background:linear-gradient(180deg, transparent 0%, var(--surface-tint) 100%);
+    }
+
+    .section-title{
+      max-width:760px;
+      margin-bottom:28px;
+    }
+
+    .section-title h2{
+      font-size:clamp(2rem,4vw,3.3rem);
+      line-height:1.08;
+      margin:8px 0 0;
+      letter-spacing:-.03em;
+    }
+
+    .section-title p{
+      color:var(--muted);
+      margin:14px 0 0;
+    }
+
+    .grid-4{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:20px;
+    }
+
     .card{
-      background:var(--surface);border:1px solid var(--line);
-      border-radius:30px;padding:26px;box-shadow:var(--shadow)
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:26px;
+      box-shadow:var(--shadow-soft);
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
-    .card h3{margin:0 0 10px;font-size:1.18rem}
-    .card p{margin:0;color:var(--muted)}
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+
+    .card:hover{
+      transform:translateY(-2px);
+      box-shadow:var(--shadow);
+      border-color:#ddcfc8;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size:1.18rem;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+      align-items:center;
+    }
+
     .soft-panel{
-      background:var(--surface);border:1px solid var(--line);
-      border-radius:32px;padding:30px;box-shadow:var(--shadow)
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:32px;
+      padding:30px;
+      box-shadow:var(--shadow);
     }
+
     .portrait{
-      min-height:460px;border-radius:30px;
+      min-height:460px;
+      border-radius:30px;
       background:
         radial-gradient(circle at 30% 20%, rgba(255,255,255,.85), transparent 20%),
         linear-gradient(180deg, #f0e6e2 0%, #e6d3d0 100%);
-      position:relative;overflow:hidden
+      position:relative;
+      overflow:hidden;
     }
+
     .portrait::after{
       content:"";
-      position:absolute;inset:auto -40px -60px auto;width:340px;height:340px;border-radius:50%;
-      background:rgba(255,255,255,.38)
+      position:absolute;
+      inset:auto -40px -60px auto;
+      width:340px;
+      height:340px;
+      border-radius:50%;
+      background:rgba(255,255,255,.38);
     }
-    .testimonials{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-    blockquote{margin:0;color:var(--muted)}
-    .quote-name{margin-top:18px;font-weight:700;color:var(--text)}
-    .faq{display:grid;gap:14px}
+
+    .faq{
+      display:grid;
+      gap:14px;
+    }
+
     details{
-      background:var(--surface-soft);border:1px solid var(--line);
-      border-radius:22px;padding:18px 20px
+      background:var(--surface-soft);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:18px 20px;
     }
-    summary{cursor:pointer;font-weight:700}
-    details p{color:var(--muted);margin:12px 0 0}
-    .contact{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-    .contact-brand{
-      background:var(--surface);border:1px solid var(--line);border-radius:30px;padding:28px;box-shadow:var(--shadow)
+
+    summary{
+      cursor:pointer;
+      font-weight:700;
     }
-    .contact-cta{
-      background:var(--accent);color:#fff;border-radius:30px;padding:28px;box-shadow:var(--shadow)
+
+    details p{
+      color:var(--muted);
+      margin:12px 0 0;
     }
-    .contact-cta p{color:#f9ecef}
-    .stack{display:grid;gap:10px}
-    .pill{
-      display:inline-block;background:rgba(255,255,255,.18);padding:8px 12px;border-radius:999px;font-size:.92rem
+
+    .contact{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:22px;
+      max-width:900px;
+      margin:0 auto;
     }
+
+    .contact-card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius:34px;
+      padding:34px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .contact-card::after{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      right:-70px;
+      bottom:-90px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(183,110,121,.12) 0%, rgba(183,110,121,0) 70%);
+      pointer-events:none;
+    }
+
+    .contact-intro{
+      max-width:58ch;
+      color:var(--muted);
+      margin-top:16px;
+    }
+
+    .contact-list{
+      display:grid;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .contact-item{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:18px;
+      padding:16px 18px;
+      background:#fcfbfa;
+      border:1px solid var(--line);
+      border-radius:18px;
+    }
+
+    .contact-item strong{
+      display:block;
+      margin-bottom:4px;
+      font-size:1rem;
+    }
+
+    .contact-item span,
+    .contact-item a{
+      color:var(--muted);
+      word-break:break-word;
+    }
+
+    .contact-item a:hover{
+      color:var(--accent);
+    }
+
+    .contact-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+    }
+
     .footer{
-      border-top:1px solid var(--line);background:#fff;padding:22px 0;color:var(--muted);font-size:.95rem
+      border-top:1px solid var(--line);
+      background:#fff;
+      padding:22px 0;
+      color:var(--muted);
+      font-size:.95rem;
     }
-    .foot-wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+    .foot-wrap{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
     @media (max-width:980px){
-      .hero,.split,.contact,.grid-4,.testimonials{grid-template-columns:1fr}
-      .menu{display:none}
-      .hero{padding-top:42px}
-      .hero-visual,.portrait{min-height:320px}
+      .hero,
+      .split,
+      .grid-4{
+        grid-template-columns:1fr;
+      }
+
+      .menu{
+        display:none;
+      }
+
+      .hero{
+        padding-top:42px;
+      }
+
+      .hero-visual,
+      .portrait{
+        min-height:320px;
+      }
     }
+
     @media (max-width:640px){
-      .stats{grid-template-columns:1fr}
-      .btn{width:100%}
-      .container{width:min(var(--max), calc(100% - 24px))}
+      .stats{
+        grid-template-columns:1fr;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .container{
+        width:min(var(--max), calc(100% - 24px));
+      }
+
+      .contact-card{
+        padding:24px;
+      }
+
+      .contact-item{
+        flex-direction:column;
+      }
+
+      .contact-actions{
+        flex-direction:column;
+      }
     }
   </style>
 </head>
@@ -177,8 +499,7 @@
         <h1>Compassionate support for labor, postpartum, nutrition, and home care.</h1>
         <p class="lead">Whitter Doula Care LLC helps growing families feel informed, cared for, and supported through labor, postpartum recovery, nourishment, and gentle help at home in Charlotte, North Carolina.</p>
         <div class="actions">
-          <a class="btn btn-primary" href="https://calendly.com/pascual-wdoulacare/30min" target="_blank" rel="noopener noreferrer">Request a Consultation</a>
-          <a class="btn btn-secondary" href="tel:+18608057155">Call (860) 805-7155</a>
+          <a class="btn btn-primary" href="https://calendly.com/pascual-wdoulacare/30min" target="_blank" rel="noopener noreferrer">Book a Consultation</a>
         </div>
         <div class="stats">
           <div class="stat"><strong>1:1</strong><span>Personal support</span></div>
@@ -186,6 +507,7 @@
           <div class="stat"><strong>Postpartum</strong><span>Gentle care at home</span></div>
         </div>
       </div>
+
       <div class="hero-card">
         <div class="hero-visual" role="img" aria-label="Soft rose-gold abstract doula website hero image">
           <div class="hero-badge">
@@ -203,19 +525,23 @@
           <h2>Care designed around your family’s needs</h2>
           <p>Choose the kind of support that fits your season, from labor care to postpartum recovery, nourishment, and light help around the home.</p>
         </div>
+
         <div class="grid-4">
           <article class="card">
             <h3>Labor Support</h3>
             <p>Calming, steady support during labor with comfort measures, encouragement, and guidance tailored to your birth preferences.</p>
           </article>
+
           <article class="card">
             <h3>Postpartum Support</h3>
             <p>Gentle care after birth to help with recovery, newborn adjustment, rest, and confidence during the early days at home.</p>
           </article>
+
           <article class="card">
             <h3>Nutrition Support</h3>
             <p>Practical wellness and nourishment guidance to help support your strength, healing, and overall well-being during pregnancy and postpartum.</p>
           </article>
+
           <article class="card">
             <h3>Mild Household Chores</h3>
             <p>Light household help that makes everyday life easier, so you can focus more on rest, recovery, and caring for your baby.</p>
@@ -224,66 +550,92 @@
       </div>
     </section>
 
-    <section id="about" class="section" style="background:#fff;">
+    <section id="about" class="section alt">
       <div class="container split">
         <div class="portrait"></div>
+
         <div class="soft-panel">
           <p class="eyebrow">About</p>
           <h2 style="margin:0;font-size:clamp(2rem,4vw,3.2rem);line-height:1.08;letter-spacing:-.03em;">A calming presence for one of life’s most meaningful moments</h2>
           <p style="margin-top:18px;color:var(--muted)">Hi, I’m Pascual Whitter, a doula dedicated to helping families feel grounded, informed, and supported. My approach is gentle, nonjudgmental, and centered on your values, your voice, and the kind of care that helps you feel safe, supported, and seen.</p>
           <p style="color:var(--muted)">Whether this is your first baby or you’re growing your family again, I’m here to offer practical guidance, comfort, reassurance, and hands-on support through each stage of the journey.</p>
+
           <div class="actions" style="margin-top:22px">
-            <span class="pill">Charlotte, NC</span>
-            <span class="pill">Labor</span>
-            <span class="pill">Postpartum</span>
-            <span class="pill">Nutrition</span>
+            <span style="display:inline-block;background:rgba(183,110,121,.08);padding:8px 12px;border-radius:999px;font-size:.92rem;">Charlotte, NC</span>
+            <span style="display:inline-block;background:rgba(183,110,121,.08);padding:8px 12px;border-radius:999px;font-size:.92rem;">Labor</span>
+            <span style="display:inline-block;background:rgba(183,110,121,.08);padding:8px 12px;border-radius:999px;font-size:.92rem;">Postpartum</span>
+            <span style="display:inline-block;background:rgba(183,110,121,.08);padding:8px 12px;border-radius:999px;font-size:.92rem;">Nutrition</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="faq" class="section">
+    <section id="faq" class="section soft">
       <div class="container">
         <div class="section-title">
           <p class="eyebrow">Questions</p>
           <h2>Common questions families may have</h2>
         </div>
+
         <div class="faq">
           <details open>
             <summary>What does a doula do?</summary>
             <p>A doula provides emotional, physical, and informational support during pregnancy, labor, birth, and postpartum recovery.</p>
           </details>
+
           <details>
             <summary>Do you replace a doctor or midwife?</summary>
             <p>No. A doula complements your medical team by focusing on comfort, education, practical support, and care centered on your preferences.</p>
           </details>
+
           <details>
             <summary>How do I book a consultation?</summary>
-            <p>Use the consultation button on this page or email directly to request a time. A scheduling link can be added later once your booking platform is ready.</p>
+            <p>Use the consultation button on this page or contact me directly by email or phone to get started.</p>
           </details>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section" style="padding-top:20px">
+    <section id="contact" class="section">
       <div class="container contact">
-        <div class="contact-brand">
+        <div class="contact-card">
           <p class="eyebrow">Connect</p>
-          <h2 style="margin:0;font-size:clamp(2rem,4vw,3rem);line-height:1.08;letter-spacing:-.03em;">Let’s talk about how I can support you</h2>
-          <p style="margin-top:16px;color:var(--muted)">Reach out to ask about availability, request a consultation, or learn more about how Whitter Doula Care LLC can support your family with calm, compassionate care.</p>
-          <div class="stack" style="margin-top:22px">
-            <div><strong>Email:</strong> <a href="mailto:info@wdoulacare.com">info@wdoulacare.com</a></div>
-            <div><strong>Phone:</strong> <a href="tel:+18608057155">(860) 805-7155</a></div>
-            <div><strong>Service Area:</strong> Charlotte, NC</div>
-            <div><strong>Website:</strong> <a href="https://wdoulacare.com">wdoulacare.com</a></div>
+          <h2 style="margin:0;font-size:clamp(2rem,4vw,3rem);line-height:1.08;letter-spacing:-.03em;max-width:14ch;">Let’s talk about how I can support you</h2>
+          <p class="contact-intro">Reach out to ask about availability, request a consultation, or learn more about how Whitter Doula Care LLC can support your family with calm, compassionate care.</p>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <div>
+                <strong>Email</strong>
+                <a href="mailto:info@wdoulacare.com">info@wdoulacare.com</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div>
+                <strong>Phone</strong>
+                <a href="tel:+18608057155">(860) 805-7155</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div>
+                <strong>Service Area</strong>
+                <span>Charlotte, NC</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div>
+                <strong>Website</strong>
+                <a href="https://wdoulacare.com">wdoulacare.com</a>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="contact-cta">
-          <h3 style="margin:0;font-size:2rem;line-height:1.1;">Request a consultation</h3>
-          <p style="margin-top:14px">Tell me a little about your support needs, questions, and what kind of care would feel most helpful for you and your family.</p>
-          <div class="actions">
-            <a class="btn btn-secondary" href="https://calendly.com/pascual-wdoulacare/30min" target="_blank" rel="noopener noreferrer">Book Now</a>
-            <a class="btn btn-secondary" href="tel:+18608057155">Call Now</a>
+
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="https://calendly.com/pascual-wdoulacare/30min" target="_blank" rel="noopener noreferrer">Book a Consultation</a>
+            <a class="btn btn-secondary" href="mailto:info@wdoulacare.com">Send an Email</a>
           </div>
         </div>
       </div>
@@ -298,3 +650,4 @@
   </footer>
 </body>
 </html>
+
